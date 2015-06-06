@@ -29,6 +29,7 @@ public class QuestionFragment extends Fragment {
 
     private final int correctImgIndex = new Random().nextInt(1);
 
+    private boolean answered;
 
     public static QuestionFragment newInstance(@DrawableRes int correctImgRes, @DrawableRes int wrongImgRes) {
         QuestionFragment questionFragment = new QuestionFragment();
@@ -72,6 +73,7 @@ public class QuestionFragment extends Fragment {
 
     @OnClick({R.id.image_quizz_left, R.id.image_quizz_right})
     public void onQuizzCardClicked(QuizzCardView quizzCardView) {
+        this.answered = true;
         onImageChosen(quizzCardView.isCorrect());
     }
 

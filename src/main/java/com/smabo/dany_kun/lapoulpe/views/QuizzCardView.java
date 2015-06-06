@@ -37,7 +37,9 @@ public class QuizzCardView extends FrameLayout {
 
     private void init(Context context, AttributeSet attributeSet) {
         View v = inflate(context, R.layout.view_quizz_card, this);
-        ButterKnife.inject(v);
+
+        if (!isInEditMode())
+            ButterKnife.inject(v);
     }
 
     public boolean isCorrect() {
