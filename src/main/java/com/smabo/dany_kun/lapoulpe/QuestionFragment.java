@@ -1,18 +1,19 @@
 package com.smabo.dany_kun.lapoulpe;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
+import com.smabo.dany_kun.lapoulpe.views.QuizzCardView;
+
+import java.util.List;
 import java.util.Random;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.InjectViews;
 import butterknife.OnClick;
 
 public class QuestionFragment extends Fragment {
@@ -20,14 +21,12 @@ public class QuestionFragment extends Fragment {
     private static final String QUESTION_FRAGMENT_CORRECT_IMG_RES_KEY = "com.smabo.dany_kun.lapoulpe.QUESTION_FRAGMENT_CORRECT_IMG_RES_KEY";
     private static final String QUESTION_FRAGMENT_WRONG_IMG_RES_KEY = "com.smabo.dany_kun.lapoulpe.QUESTION_FRAGMENT_WRONG_IMG_RES_KEY";
 
-    private OnFragmentInteractionListener mListener;
+    private OnQuizzFragmentInteractionListener mListener;
 
-    @InjectView(R.id.image_quizz_left)
-    ImageView leftImg;
-    @InjectView(R.id.image_quizz_right)
-    ImageView rightImg;
+    @InjectViews({R.id.image_quizz_left, R.id.image_quizz_right})
+    List<QuizzCardView> quizzCards;
 
-    private final boolean leftImgStatus = new Random().nextBoolean();
+    private final int correctImgIndex = new Random().nextInt(1);
 
     public static QuestionFragment newInstance(int correctImgRes, int wrongImgRes) {
         QuestionFragment questionFragment = new QuestionFragment();
@@ -57,34 +56,47 @@ public class QuestionFragment extends Fragment {
 
         int correctImg = getArguments().getInt(QUESTION_FRAGMENT_CORRECT_IMG_RES_KEY);
         int wrongImg = getArguments().getInt(QUESTION_FRAGMENT_WRONG_IMG_RES_KEY);
-        leftImg.setImageResource(leftImgStatus ? correctImg : wrongImg);
-        rightImg.setImageResource(leftImgStatus ? wrongImg : correctImg);
-    }
 
-    @OnClick(R.id.image_quizz_left)
-    public void onLeftImageClicked() {
-        onImageChosen(leftImgStatus);
-    }
+        QuizzCardView correctQuizzCard = quizzCards.get(correctImgIndex);
+        correctQuizzCard.setIsCorrect(true);
+        correctQuizzCard.setImageResource(correctImg);
 
-    @OnClick(R.id.image_quizz_right)
-    public void onRightImageClicked() {
-        onImageChosen(!leftImgStatus);
-    }
-
-    private void onImageChosen(boolean b) {
-        if (mListener != null) {
-            mListener.onImageChosen(b);
+        for (QuizzCardView quizzCardView : quizzCards) {
+            if (!quizzCardView.equals(correctQuizzCard)) quizzCardView.setImageResource(wrongImg);
         }
+
+
+    }
+
+    @OnClick({R.id.image_quizz_left, R.id.image_quizz_right})
+    public void onQuizzCardClicked(QuizzCardView quizzCardView) {
+        onImageChosen(quizzCardView.isCorrect());
+    }
+
+    private void onImageChosen(boolean correct) {
+        showResult(correct);
+        if (mListener != null) {
+            mListener.onImageChosen(correct);
+        }
+    }
+
+    private void showResult(boolean correct) {
+        ButterKnife.apply(quizzCards, new ButterKnife.Action<QuizzCardView>() {
+            @Override
+            public void apply(QuizzCardView view, int index) {
+                view.showResult();
+            }
+        });
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnQuizzFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnQuizzFragmentInteractionListener");
         }
     }
 
@@ -94,7 +106,7 @@ public class QuestionFragment extends Fragment {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
+    public interface OnQuizzFragmentInteractionListener {
         void onImageChosen(boolean correct);
     }
 

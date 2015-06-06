@@ -5,12 +5,13 @@
     android:orientation="vertical"
     tools:context="com.smabo.dany_kun.lapoulpe.QuestionFragment">
 
-    <ImageView
+    <com.smabo.dany_kun.lapoulpe.views.QuizzCardView
         android:id="@+id/image_quizz_left"
-        style="@style/Image.Quizz" />
+        style="@style/QuizzCard" />
 
-    <ImageView
+    <com.smabo.dany_kun.lapoulpe.views.QuizzCardView
         android:id="@+id/image_quizz_right"
-        style="@style/Image.Quizz" />
+        style="@style/QuizzCard" />
+
 
 </LinearLayout>
