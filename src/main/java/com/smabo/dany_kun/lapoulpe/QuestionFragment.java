@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 import butterknife.InjectViews;
 import butterknife.OnClick;
 
@@ -26,6 +27,8 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
 
     @InjectViews({R.id.image_quizz_left, R.id.image_quizz_right})
     List<QuizzCardView> quizzCards;
+    @InjectView(R.id.imageview_go_to_next)
+    View goToNextView;
 
     private boolean answered;
 
@@ -39,7 +42,6 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
     public QuestionFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,8 +72,14 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
     @OnClick({R.id.image_quizz_left, R.id.image_quizz_right})
     public void onQuizzCardClicked(QuizzCardView quizzCardView) {
         this.answered = true;
-        S cardStatus= (S) quizzCardView.getCardStatus();
+        goToNextView.setVisibility(View.VISIBLE);
+        @SuppressWarnings("unchecked") S cardStatus = (S) quizzCardView.getCardStatus();
         onCardChosen(quizzCardView, cardStatus);
+    }
+
+    @OnClick(R.id.imageview_go_to_next)
+    public void goToNextClicked() {
+        if (answered && mListener != null) mListener.onGoToNext();
     }
 
     protected abstract void onCardChosen(QuizzCardView quizzCardView, S cardStatus);
@@ -95,6 +103,8 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
 
     public interface OnQuizzFragmentInteractionListener {
         void onImageChosen(boolean correct);
+
+        void onGoToNext();
     }
 
 }

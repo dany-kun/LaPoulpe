@@ -56,4 +56,9 @@ public class MainActivity extends Activity
         if (correct) score++;
     }
 
+    @Override
+    public void onGoToNext() {
+        showNextFragment();
+    }
+
 }
