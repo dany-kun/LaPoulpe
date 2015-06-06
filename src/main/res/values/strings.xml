@@ -13,4 +13,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="octopus">Octopus</string>
     <string name="squid">squid</string>
+    <string name="your_score">Your score</string>
+    <string name="restart">RESTART</string>
 </resources>

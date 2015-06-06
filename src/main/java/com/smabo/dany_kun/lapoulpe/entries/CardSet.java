@@ -33,5 +33,9 @@ public enum CardSet implements CardStatus<BooleanStateCard> {
         return status;
     }
 
-
+    public static void reset() {
+        for (CardSet cardSet : values()) {
+            cardSet.setAlreadyAsked(false);
+        }
+    }
 }

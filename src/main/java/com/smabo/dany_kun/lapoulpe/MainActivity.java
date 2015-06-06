@@ -3,6 +3,7 @@ package com.smabo.dany_kun.lapoulpe;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.smabo.dany_kun.lapoulpe.entries.CardSet;
 import com.smabo.dany_kun.lapoulpe.entries.Octopus;
 import com.smabo.dany_kun.lapoulpe.entries.BooleanStateCard;
 import com.smabo.dany_kun.lapoulpe.entries.WrongOctopusCard;
@@ -12,10 +13,12 @@ import com.smabo.dany_kun.lapoulpe.entries.model.CardStatus;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends Activity
-        implements QuestionFragmentBoolean.OnQuizzFragmentInteractionListener {
+public class MainActivity extends Activity implements
+        QuestionFragmentBoolean.OnQuizzFragmentInteractionListener,
+        LastFragment.LastFragmentInteraction {
 
     private int score = 0;
+    private int topScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +51,15 @@ public class MainActivity extends Activity
     }
 
     private void showLastFragment() {
-
+        getFragmentManager().beginTransaction()
+                .replace(R.id.activity_container,
+                        LastFragment.newInstance(score, topScore))
+                .commit();
     }
 
     @Override
     public void onImageChosen(boolean correct) {
+        topScore++;
         if (correct) score++;
     }
 
@@ -61,4 +68,11 @@ public class MainActivity extends Activity
         showNextFragment();
     }
 
+    @Override
+    public void onRestartClicked() {
+        topScore = 0;
+        score = 0;
+        CardSet.reset();
+        showNextFragment();
+    }
 }

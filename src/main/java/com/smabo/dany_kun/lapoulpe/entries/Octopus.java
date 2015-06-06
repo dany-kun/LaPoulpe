@@ -28,4 +28,5 @@ public enum Octopus implements CardStatus<BooleanStateCard> {
     public void setAlreadyAsked(boolean alreadyAsked) {
         cardSet.setAlreadyAsked(alreadyAsked);
     }
+
 }

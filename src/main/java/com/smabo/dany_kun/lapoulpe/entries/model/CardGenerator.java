@@ -2,6 +2,7 @@ package com.smabo.dany_kun.lapoulpe.entries.model;
 
 import android.support.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -16,16 +17,15 @@ public class CardGenerator {
 
     @Nullable
     public static <T extends Card> CardStatus<T> getNotAskedCard(CardStatus<T>[] cardStatus) {
-        List<CardStatus<T>> cardsList = Arrays.asList(cardStatus);
-        Iterator<CardStatus<T>> it = cardsList.iterator();
+        ArrayList<CardStatus<T>> candidates = new ArrayList<>();
 
-        while (it.hasNext()) {
-            if (it.next().isAlreadyAsked()) it.remove();
+        for (CardStatus<T> cardStatus1 : cardStatus) {
+            if (!cardStatus1.isAlreadyAsked()) candidates.add(cardStatus1);
         }
 
-        if (cardsList.size() == 0) return null;
+        if (candidates.size() == 0) return null;
 
-        return cardsList.get(r.nextInt(cardsList.size()));
+        return candidates.get(r.nextInt(candidates.size()));
     }
 
 }
