@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.smabo.dany_kun.lapoulpe.QuestionFragment">
+
+    <ImageView
+        android:id="@+id/image_quizz_left"
+        style="@style/Image.Quizz" />
+
+    <ImageView
+        android:id="@+id/image_quizz_right"
+        style="@style/Image.Quizz" />
+
+</LinearLayout>
