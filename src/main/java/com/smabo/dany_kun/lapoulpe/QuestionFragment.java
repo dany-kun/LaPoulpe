@@ -3,6 +3,7 @@ package com.smabo.dany_kun.lapoulpe;
 import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.DrawableRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,8 @@ public class QuestionFragment extends Fragment {
 
     private final int correctImgIndex = new Random().nextInt(1);
 
-    public static QuestionFragment newInstance(int correctImgRes, int wrongImgRes) {
+
+    public static QuestionFragment newInstance(@DrawableRes int correctImgRes, @DrawableRes int wrongImgRes) {
         QuestionFragment questionFragment = new QuestionFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(QUESTION_FRAGMENT_CORRECT_IMG_RES_KEY, correctImgRes);
