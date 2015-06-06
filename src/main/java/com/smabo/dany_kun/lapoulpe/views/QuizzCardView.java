@@ -2,12 +2,14 @@ package com.smabo.dany_kun.lapoulpe.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.smabo.dany_kun.lapoulpe.R;
+import com.smabo.dany_kun.lapoulpe.entries.model.Card;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -22,7 +24,7 @@ public class QuizzCardView extends FrameLayout {
     @InjectView(R.id.textview_card)
     TextView textView;
 
-    private boolean isCorrect = false;
+    private Card stateCard;
 
     public QuizzCardView(Context context) {
         super(context);
@@ -42,23 +44,20 @@ public class QuizzCardView extends FrameLayout {
             ButterKnife.inject(v);
     }
 
-    public boolean isCorrect() {
-        return isCorrect;
+    public <T extends Card> void setStateCardData(T stateCard) {
+        this.stateCard = stateCard;
+        resetView();
     }
 
-    public void setIsCorrect(boolean isCorrect) {
-        this.isCorrect = isCorrect;
+    private void resetView() {
+        imageView.setImageResource(stateCard.getDrawable());
     }
 
-    public void setImageResource(int imgRes) {
-        imageView.setImageResource(imgRes);
+    public void showText() {
+        textView.setText(stateCard.getStringRes());
     }
 
-    public void setText(CharSequence text) {
-        textView.setText(text);
-    }
-
-    public void showResult() {
-        textView.setText(isCorrect ? "OK" : "!!!!!");
+    public Object getCardStatus() {
+        return stateCard.getStatus();
     }
 }
