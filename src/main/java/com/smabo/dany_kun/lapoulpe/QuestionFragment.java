@@ -3,7 +3,6 @@ package com.smabo.dany_kun.lapoulpe;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
 
     private static final String CARDS_KEY = "com.smabo.dany_kun.lapoulpe.CARDS_KEY";
     private static final String STATE_ANSWERED = "com.smabo.dany_kun.lapoulpe.STATE_ANSWERED";
+    private static final String STATE_GO_TO_NEXT_VISIBILITY = "com.smabo.dany_kun.lapoulpe.STATE_GO_TO_NEXT_VISIBILITY";
 
     protected OnQuizzFragmentInteractionListener mListener;
 
@@ -49,6 +49,7 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(STATE_ANSWERED, answered);
+        outState.putInt(STATE_GO_TO_NEXT_VISIBILITY, goToNextView.getVisibility());
     }
 
     @Override
@@ -68,6 +69,8 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.inject(this, view);
+
+
         ArrayList<T> cards = getArguments().getParcelableArrayList(CARDS_KEY);
 
         if (cards.size() != quizzCards.size())
@@ -80,6 +83,9 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
             QuizzCardView cardView = quizzCards.get(j);
             cardView.setStateCardData(card);
         }
+
+        if (savedInstanceState != null) //noinspection ResourceType
+            goToNextView.setVisibility(savedInstanceState.getInt(STATE_GO_TO_NEXT_VISIBILITY, View.GONE));
 
     }
 

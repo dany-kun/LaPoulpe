@@ -17,16 +17,30 @@ public class MainActivity extends Activity implements
         QuestionFragmentBoolean.OnQuizzFragmentInteractionListener,
         LastFragment.LastFragmentInteraction {
 
+    private static final String STATE_TOP_SCORE = "com.smabo.dany_kun.lapoulpe.STATE_TOP_SCORE";
+    private static final String STATE_USER_SCORE = "com.smabo.dany_kun.lapoulpe.STATE_USER_SCORE";
+
     private int score = 0;
     private int topScore = 0;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(STATE_USER_SCORE, score);
+        outState.putInt(STATE_TOP_SCORE, topScore);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null)
+        if (savedInstanceState == null) {
             showNextFragment();
+        } else {
+            score = savedInstanceState.getInt(STATE_USER_SCORE);
+            topScore = savedInstanceState.getInt(STATE_TOP_SCORE);
+        }
     }
 
     private void showNextFragment() {
