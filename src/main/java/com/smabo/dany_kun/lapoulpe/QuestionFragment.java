@@ -3,6 +3,7 @@ package com.smabo.dany_kun.lapoulpe;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,8 @@ import butterknife.OnClick;
 
 public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment {
 
-    private static final String CARDS_KEY = "com.smabo.dany_kun.lapoulpe.CARDS_KEY ";
+    private static final String CARDS_KEY = "com.smabo.dany_kun.lapoulpe.CARDS_KEY";
+    private static final String STATE_ANSWERED = "com.smabo.dany_kun.lapoulpe.STATE_ANSWERED";
 
     protected OnQuizzFragmentInteractionListener mListener;
 
@@ -44,6 +46,18 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(STATE_ANSWERED, answered);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) answered = savedInstanceState.getBoolean(STATE_ANSWERED);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -54,7 +68,6 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.inject(this, view);
-
         ArrayList<T> cards = getArguments().getParcelableArrayList(CARDS_KEY);
 
         if (cards.size() != quizzCards.size())
@@ -67,6 +80,7 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
             QuizzCardView cardView = quizzCards.get(j);
             cardView.setStateCardData(card);
         }
+
     }
 
     @OnClick({R.id.image_quizz_left, R.id.image_quizz_right})

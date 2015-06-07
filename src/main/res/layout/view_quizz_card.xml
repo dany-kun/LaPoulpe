@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:background="@color/black_transparent"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/imageview_card_result"
