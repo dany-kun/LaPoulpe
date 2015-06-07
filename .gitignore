@@ -1,5 +1,7 @@
 /build
 
 proguard-rules.pro
+gradle.properties
+release.keystore
 
 app.iml
