@@ -118,6 +118,12 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;

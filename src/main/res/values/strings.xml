@@ -1,19 +1,23 @@
 <resources>
     <string name="app_name">LaPoulpe</string>
-
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-
-    <string name="hello_world">Hello world!</string>
-
-    <string name="action_settings">Settings</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="octopus">Octopus</string>
-    <string name="squid">squid</string>
+    <string name="octopus">Octopus vulagris</string>
+    <string name="squid">Squid</string>
     <string name="your_score">Your score</string>
     <string name="restart">RESTART</string>
     <string name="question">Click on the octopus!</string>
+    <string name="octopus_blue_ringed">Blue ringed octopus</string>
+    <string name="octopus_briaerus">Octopus briaerus</string>
+    <string name="octopus_pulpo_a_la_gallega">Pulpo a la gallega (Spanish octopus food)</string>
+    <string name="octopus_rubesscens">Octopus rubesscens</string>
+    <string name="octopus_salutii">Octopus salutii</string>
+    <string name="octopus_takoyaki">Takoyaki (Japanese octopus food)</string>
+    <string name="bigfin_reef_squid">Bigfin reef squid</string>
+    <string name="cuttlefish">Cuttlefish</string>
+    <string name="fried_squid">Fried squid</string>
+    <string name="ika_sou_men">Raw squid (Japanese food)</string>
+    <string name="ika_yaki">Cooked squid</string>
+    <string name="kraken">Kraken (legendary animal)</string>
+    <string name="long_tentacled_anemone">Long tentacled anemone</string>
+    <string name="reef_cuttlefish">Reef cuttlefish</string>
+    <string name="squid_baby">Baby squid</string>
 </resources>

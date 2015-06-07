@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.ion.Ion;
 import com.smabo.dany_kun.lapoulpe.R;
 import com.smabo.dany_kun.lapoulpe.entries.model.Card;
 
@@ -24,6 +25,8 @@ import butterknife.InjectView;
  */
 public class QuizzCardView extends FrameLayout {
 
+    private final String RESSOURCE_PATH;
+
     @InjectView(R.id.imageview_card)
     ImageView imageView;
     @InjectView(R.id.textview_card)
@@ -34,18 +37,19 @@ public class QuizzCardView extends FrameLayout {
     private Card stateCard;
 
     public QuizzCardView(Context context) {
-        super(context);
-        init(context, null);
+        this(context, null);
     }
 
     public QuizzCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        RESSOURCE_PATH = "android.resource://" + context.getPackageName() + "/";
         init(context, attrs);
     }
 
 
     private void init(Context context, AttributeSet attributeSet) {
         View v = inflate(context, R.layout.view_quizz_card, this);
+
 
         if (!isInEditMode())
             ButterKnife.inject(v);
@@ -57,7 +61,8 @@ public class QuizzCardView extends FrameLayout {
     }
 
     private void resetView() {
-        imageView.setImageResource(stateCard.getDrawable());
+        Ion.with(imageView).load(RESSOURCE_PATH + stateCard.getDrawable());
+        //imageView.setImageResource(stateCard.getDrawable());
         textView.setText(stateCard.getStringRes());
     }
 
