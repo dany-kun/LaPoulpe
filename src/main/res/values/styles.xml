@@ -1,8 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">@color/purple</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/deep_purple</item>
+        <item name="colorAccent">@color/purple_accent</item>
+
     </style>
 
     <style name="QuizzCard">
@@ -11,4 +16,9 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <style name="cards_container">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <color name="purple_accent">#E040FB</color>
 </resources>

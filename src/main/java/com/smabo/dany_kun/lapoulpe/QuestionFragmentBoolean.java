@@ -13,6 +13,7 @@ public class QuestionFragmentBoolean extends QuestionFragment<Boolean, Boolean, 
 
     @Override
     protected void onCardChosen(QuizzCardView quizzCardView, Boolean cardStatus) {
+        quizzCardView.setResultImg(cardStatus ? R.drawable.tick : R.drawable.cross);
         onImageChosen(cardStatus);
     }
 

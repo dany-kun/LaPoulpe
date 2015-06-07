@@ -1,13 +1,25 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.smabo.dany_kun.lapoulpe.QuestionFragmentBoolean">
 
+    <TextView
+        android:id="@+id/textview_quiz_question"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_quiz_title_height"
+        android:background="@color/purple"
+        android:gravity="center"
+        android:text="@string/question"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_below="@+id/textview_quiz_question"
+        style="@style/cards_container">
 
         <com.smabo.dany_kun.lapoulpe.views.QuizzCardView
             android:id="@+id/image_quizz_left"
@@ -19,13 +31,16 @@
 
     </LinearLayout>
 
-    <ImageView
+    <android.support.design.widget.FloatingActionButton xmlns:fab="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageview_go_to_next"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/octopus_arrow"
-        android:visibility="gone" />
+        android:src="@android:drawable/ic_media_play"
+        android:visibility="gone"
+        fab:borderWidth="0dp"
+        fab:elevation="10dp"
+        tools:visibility="visible" />
 
-
-</FrameLayout>
+</RelativeLayout>

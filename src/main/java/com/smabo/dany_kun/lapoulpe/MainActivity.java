@@ -25,7 +25,8 @@ public class MainActivity extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        showNextFragment();
+        if (savedInstanceState == null)
+            showNextFragment();
     }
 
     private void showNextFragment() {

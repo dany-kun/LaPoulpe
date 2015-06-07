@@ -1,6 +1,7 @@
 package com.smabo.dany_kun.lapoulpe.views;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -22,6 +23,8 @@ public class QuizzCardView extends FrameLayout {
     ImageView imageView;
     @InjectView(R.id.textview_card)
     TextView textView;
+    @InjectView(R.id.imageview_card_result)
+    ImageView resultImageView;
 
     private Card stateCard;
 
@@ -58,5 +61,9 @@ public class QuizzCardView extends FrameLayout {
 
     public Object getCardStatus() {
         return stateCard.getStatus();
+    }
+
+    public void setResultImg(@DrawableRes int i) {
+        resultImageView.setImageResource(i);
     }
 }

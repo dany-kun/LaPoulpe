@@ -71,10 +71,12 @@ public abstract class QuestionFragment<A, S, T extends Card<S>> extends Fragment
 
     @OnClick({R.id.image_quizz_left, R.id.image_quizz_right})
     public void onQuizzCardClicked(QuizzCardView quizzCardView) {
-        this.answered = true;
-        goToNextView.setVisibility(View.VISIBLE);
-        @SuppressWarnings("unchecked") S cardStatus = (S) quizzCardView.getCardStatus();
-        onCardChosen(quizzCardView, cardStatus);
+        if (!answered) {
+            this.answered = true;
+            goToNextView.setVisibility(View.VISIBLE);
+            @SuppressWarnings("unchecked") S cardStatus = (S) quizzCardView.getCardStatus();
+            onCardChosen(quizzCardView, cardStatus);
+        }
     }
 
     @OnClick(R.id.imageview_go_to_next)

@@ -18,4 +18,11 @@
         android:background="@color/black_transparent"
         android:textColor="@color/white" />
 
+    <ImageView
+        android:id="@+id/imageview_card_result"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop" />
+
 </merge>

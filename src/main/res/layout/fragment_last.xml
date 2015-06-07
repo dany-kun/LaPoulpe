@@ -2,7 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple"
     tools:context="com.smabo.dany_kun.lapoulpe.LastFragment">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/textview_score_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/octopus_arrow" />
 
     <TextView
         android:id="@+id/textview_score_title"
@@ -11,13 +20,18 @@
         android:layout_above="@+id/textview_score"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:text="@string/your_score" />
+        android:text="@string/your_score"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textview_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        tools:text="5/20" />
 
     <TextView
         android:id="@+id/textview_restart"
@@ -26,6 +40,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:text="@string/restart" />
+        android:text="@string/restart"
+        android:textColor="@color/white"
+        android:textSize="26sp" />
 
 </RelativeLayout>
